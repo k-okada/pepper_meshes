@@ -57,10 +57,11 @@ file(COPY ${INSTALLER_TMP_PATH}
 set(INSTALLER_PATH ${TMP_DIR}/installer.run)
 
 # add a target for devel space
-add_custom_target(${PROJECT_NAME}_meshes
-  COMMAND ${INSTALLER_PATH} --mode text --prefix ${TMP_DIR}
+add_custom_target(${PROJECT_NAME}_meshes ALL
+  COMMAND ${INSTALLER_PATH} --mode unattended --prefix ${TMP_DIR}
   COMMAND mkdir -p ${CATKIN_DEVEL_PREFIX}/${FINAL_MESH_PATH}
-  COMMAND cp -fr ${TMP_MESH_PATH} ${CATKIN_DEVEL_PREFIX}/${FINAL_MESH_PATH}/
+#  COMMAND cp -fr ${TMP_MESH_PATH} ${CATKIN_DEVEL_PREFIX}/${FINAL_MESH_PATH}/
+  COMMAND cp -fr ${TMP_MESH_PATH} ${PROJECT_SOURCE_DIR}
   COMMAND rm -fr ${TMP_DIR}/rollback*
 )
 
